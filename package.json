@@ -34,5 +34,19 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ErikBoonprakong/link-shortener-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ErikBoonprakong/link-shortener-server/issues"
+  },
+  "homepage": "https://github.com/ErikBoonprakong/link-shortener-server#readme",
+  "description": ""
 }
