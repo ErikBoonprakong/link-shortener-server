@@ -83,6 +83,7 @@ app
     }
   })
   .post("/shortlinks", async (server) => {
+    console.log("posting...");
     const body = await server.body;
     const url = body.fullUrl;
     let isPrivate = body.isPrivate;
