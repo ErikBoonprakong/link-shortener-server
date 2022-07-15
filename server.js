@@ -62,7 +62,7 @@ app
       let currentCountPrivate = await privateCount.get(shortcode);
       let valid = await validateURL(theURL);
       let privateValid = await validateURL(privateURL);
-      console.log(valid);
+      console.log("is it valid?" + valid);
 
       if (valid) {
         counter.set(shortcode, currentCount + 1);
