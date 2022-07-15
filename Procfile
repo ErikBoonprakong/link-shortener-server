@@ -1,1 +1,1 @@
-web: DENO_ENV=production deno run --allow-net=:${PORT} --allow-read --allow-env --allow-write --unstable server.js --port=${PORT}
+web: DENO_ENV=production deno run --allow-net --allow-read --allow-env --allow-write --unstable server.js --port=${PORT}
