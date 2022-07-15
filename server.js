@@ -60,14 +60,14 @@ app
       const privateURL = await privateLink.get(shortcode);
       let currentCount = await counter.get(shortcode);
       let currentCountPrivate = await privateCount.get(shortcode);
-      let valid = await validateURL(theURL);
-      let privateValid = await validateURL(privateURL);
-      console.log("is it valid?" + valid);
+      // let valid = await validateURL(theURL);
+      // let privateValid = await validateURL(privateURL);
+      // console.log("is it valid?" + valid);
 
-      if (valid) {
+      if (theURL) {
         counter.set(shortcode, currentCount + 1);
         server.redirect(theURL);
-      } else if (privateValid) {
+      } else if (privateURL) {
         privateCount.set(shortcode, currentCountPrivate + 1);
         server.redirect(privateURL);
       } else {
