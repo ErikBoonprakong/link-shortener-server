@@ -32,15 +32,16 @@ function randomFour() {
 }
 
 async function validateURL(url) {
-  let valid;
-  try {
-    if (await fetch(url)) {
-      valid = true;
-    }
-  } catch {
-    valid = false;
-  }
-  return valid;
+  // let valid;
+  // try {
+  //   if (await fetch(url)) {
+  //     valid = true;
+  //   }
+  // } catch {
+  //   valid = false;
+  // }
+  // return valid;
+  return await fetch(url);
 }
 
 app
@@ -90,7 +91,6 @@ app
     }
   })
   .post("/shortlinks", async (server) => {
-    console.log("posting...");
     const body = await server.body;
     const url = body.fullUrl;
     console.log(url);
