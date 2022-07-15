@@ -93,6 +93,7 @@ app
     console.log("posting...");
     const body = await server.body;
     const url = body.fullUrl;
+    console.log(url);
     let isPrivate = body.isPrivate;
     let valid = await validateURL(url);
     if (valid) {
