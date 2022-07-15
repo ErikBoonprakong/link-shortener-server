@@ -1,7 +1,11 @@
 import { Application } from "https://deno.land/x/abc@v1.3.1/mod.ts";
 import { abcCors } from "https://deno.land/x/cors/mod.ts";
 import { LocalStorage } from "https://deno.land/x/storage@0.0.5/mod.ts";
+import { config } from "https://deno.land/x/dotenv/mod.ts";
+import { parse } from "https://deno.land/std/flags/mod.ts";
 
+// config({ path: `./.env.${DENO_ENV}`, export: true });
+// const DENO_ENV = Deno.env.get("DENO_ENV") ?? "development";
 const store = new LocalStorage("shortenings");
 const counter = new LocalStorage("counter");
 const privateLink = new LocalStorage("private");
@@ -11,7 +15,10 @@ const corsConditions = abcCors({
 });
 
 const app = new Application();
-const PORT = 8080;
+//const PORT = parseInt(Deno.env.get("PORT")) || 8080;
+const default_port = 8080;
+const { args } = Deno;
+const arg_port = parse(args).port;
 
 function randomFour() {
   const characters = ["a", "e", "r", "i", "k", "o", "u", "1", "5", "8"];
@@ -120,6 +127,6 @@ app
       return server.json({ Error: "Invalid short code" }, 400);
     }
   })
-  .start({ port: PORT });
+  .start({ port: arg_port ? Number(arg_port) : default_port });
 
-console.log(`Server running on http://localhost:${PORT}`);
+console.log(`Server running on http://localhost:${default_port}`);
