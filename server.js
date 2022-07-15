@@ -4,8 +4,6 @@ import { LocalStorage } from "https://deno.land/x/storage@0.0.5/mod.ts";
 import { config } from "https://deno.land/x/dotenv/mod.ts";
 import { parse } from "https://deno.land/std/flags/mod.ts";
 
-// config({ path: `./.env.${DENO_ENV}`, export: true });
-// const DENO_ENV = Deno.env.get("DENO_ENV") ?? "development";
 const store = new LocalStorage("shortenings");
 const counter = new LocalStorage("counter");
 const privateLink = new LocalStorage("private");
@@ -15,7 +13,6 @@ const corsConditions = abcCors({
 });
 
 const app = new Application();
-//const PORT = parseInt(Deno.env.get("PORT")) || 8080;
 const default_port = 8080;
 const { args } = Deno;
 const arg_port = parse(args).port;
@@ -32,15 +29,6 @@ function randomFour() {
 }
 
 async function validateURL(url) {
-  // let valid;
-  // try {
-  //   if (await fetch(url)) {
-  //     valid = true;
-  //   }
-  // } catch {
-  //   valid = false;
-  // }
-  // return valid;
   return await fetch(url);
 }
 
@@ -68,6 +56,7 @@ app
     if (shortcode) {
       console.log(shortcode);
       const theURL = await store.get(shortcode);
+      console.log(theURL);
       const privateURL = await privateLink.get(shortcode);
       let currentCount = await counter.get(shortcode);
       let currentCountPrivate = await privateCount.get(shortcode);
